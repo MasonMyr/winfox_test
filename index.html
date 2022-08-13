@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="node_modules\vue\dist\vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <form action="" method="post">
+      <div>
+        <div class="form-group" v-for="input in inputs">
+          <label :for="input.name">{{input.text}}</label>
+          <input type="text" :name="input.name" :id="input.name" class="form-control" :placeholder="input.text">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+  </div>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          inputs: [{
+              name: 'fname',
+              text: 'Имя'
+            },
+            {
+              name: 'sname',
+              text: 'Фамилия'
+            },
+            {
+              name: 'email',
+              text: 'email'
+            }
+          ]
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+
+</html>
