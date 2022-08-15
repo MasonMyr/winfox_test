@@ -20,10 +20,11 @@
         <h1>Регистрация</h1>
         <div class="form-group" v-for="input in inputs">
           <label :for="input.name">{{input.text}}</label>
-          <input :type="input.type" :name="input.name" :id="input.name" class="form-control" :placeholder="input.text" required>
-          <p class="errorMessage hidden" :id="name">Данное значение занято</p>
+          <input :type="input.type" :name="input.name" :id="input.name" class="form-control" :placeholder="input.text"
+            required>
         </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
+        <br>
+        <button type="submit" class="btn btn-primary" id="submit">Отправить</button>
       </div>
     </form>
   </div>
@@ -51,15 +52,6 @@
       }
     }).mount('#app');
   </script>
-  <style>
-    .errorMessage{
-      color: red;
-      margin-bottom: 5px!important;
-    }
-    .hidden{
-      visibility: hidden;
-    }
-  </style>
 </body>
 
 </html>

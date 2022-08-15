@@ -10,7 +10,7 @@ class operations
         }
         $sql = "CREATE DATABASE IF NOT EXISTS winfoxtest";
         if ($conn->query($sql) === TRUE) {
-            $conn -> close();
+            $conn->close();
             $pdo = new PDO(
                 'mysql:host=' . $cfg['host'] . ';
                 dbname=' . $cfg['db'] . '',
@@ -22,13 +22,22 @@ class operations
         }
     }
 
-    public function addRecord($mysqli)
+    public function addRecord($pdo)
     {
         $fname = $_POST['fname'];
         $sname = $_POST['sname'];
-        $email = $_POST['email']; 
+        $email = $_POST['email'];
+        $check = $pdo->query("SELECT `email` FROM `users` WHERE `email` = '$email'");
+        $num = $check->fetchColumn();
+        if ($num != 0) {
+            echo "Email занят";
+            exit();
+        }else{
+            $pdo -> query("INSERT INTO `users` (`fname`, `sname`, `email`) VALUES ('$fname', '$sname', '$email');");
+        }
     }
 }
 
 $operations = new operations();
-$mysqli = $operations->sqlConnect();
+$connect = $operations ->sqlConnect();
+$operations -> addRecord($connect);
